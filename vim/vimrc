@@ -1,11 +1,31 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vimrc
 "
-" Author: 
+" Author:
 "   YunSeop Song
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"   Plugin Setting
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+call plug#begin()
+
+Plug 'benmills/vimux'
+Plug 'pitluga/vimux-nose-test'
+
+Plug 'scrooloose/nerdtree'
+Plug 'jistr/vim-nerdtree-tabs'
+
+Plug 'trusktr/seti.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+Plug 'kien/ctrlp.vim'
+Plug 'vim-scripts/ctrlp-z'
+
+call plug#end()
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -18,28 +38,15 @@ set history=500
 " Mapping <leader> => ,
 let mapleader=","
 
-
 " Show current position at bottom-right
 set ruler
 
-" Ignore case when searching
-set ignorecase
-
-" Be smart when searching
-set smartcase
-
-" Highlight search result
-set hlsearch
-
-" Move cursor when searching
-set incsearch 
-
-set lazyredraw 
+set lazyredraw
 
 set magic
 
 " Show matching brackets when text indicator is over them
-set showmatch 
+set showmatch
 
 " How many tenths of a second to blink when matching brackets
 set mat=2
@@ -50,29 +57,51 @@ set number
 " Set line number relative
 set relativenumber
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"   Search Setting
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Ignore case when searching
+set ignorecase
+
+" Be smart when searching
+set smartcase
+
+" Highlight search last result
+set hlsearch
+
+" Move cursor when searching
+set incsearch
+
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   Color Setting
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Syntax Enable
 syntax on
-" Use color scheme 'elflord'
-color elflord
 
+" Use color scheme 'seti'
+color seti 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   Indent Setting
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" tab = 4 * space
+" tab == 4 space
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
+
+" Using tab like 4 space
 set expandtab
 set smarttab
 
-set ai "Auto Indent
-set si "Smart Indent
+" Auto Indent
+set ai
+" Smart Indent
+set si
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -89,22 +118,43 @@ nnoremap <leader>src :source ~/.vimrc<CR>
 map <leader>q <ESC><ESC>:q<CR>
 
 " F2 => Save File
-"imap <F2> <ESC><ESC>:w<CR>
+imap <F2> <ESC><ESC>:w<CR>
 map <F2> <ESC><ESC>:w<CR>
 
 " F3 => Toggle line number
 map <F3> <ESC>:set nu! relativenumber!<CR>
 
-" jk => esc, Escape insert mode 
-inoremap jk <ESC> 
+" jk => esc, Escape insert mode
+inoremap jk <ESC>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   Moving tab Setting
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"   NERDTree Setting
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" F9 => Toggle NERDTree
+map <F9> :NERDTreeToggle<CR>
+
+" Setting NERDTree Ignore Files
+let NERDTreeIgnore=['\.pyc$']
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"   nosetest Setting
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let test#strategy="vimux"
+
+nmap <silent> <leader>t :RunNoseTestFocused<CR>
+nmap <silent> <leader>T :RunNoseTestBuffer<CR>
 
