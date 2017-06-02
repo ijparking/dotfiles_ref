@@ -1,3 +1,5 @@
+#! /bin/bash
+
 # create symbolic link
 
 # vimrc
