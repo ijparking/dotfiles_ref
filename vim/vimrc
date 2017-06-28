@@ -28,6 +28,8 @@ Plug 'Valloric/YouCompleteMe'
 
 Plug 'flazz/vim-colorschemes'
 
+Plug 'rking/ag.vim'
+
 call plug#end()
 
 
@@ -178,3 +180,9 @@ let g:ycm_key_list_select_completion = ['<C-j>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-k>', '<Up>']
 
 map <F4> :YcmCompleter GoTo<CR>
+
+" Plugin ag.vim
+" <leader>ag : Ag (search file contents)
+nnoremap <leader>ag :Ag! -i ""<Left>
+" Search word which cursor on
+nnoremap <leader>aw :Ag<CR>
