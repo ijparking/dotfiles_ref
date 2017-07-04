@@ -29,6 +29,7 @@ Plug 'Valloric/YouCompleteMe'
 Plug 'flazz/vim-colorschemes'
 
 Plug 'rking/ag.vim'
+Plug 'SirVer/ultisnips'
 
 call plug#end()
 
@@ -106,7 +107,7 @@ set smarttab
 " Auto Indent
 "set ai
 " Smart Indent
-"set si
+set si
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -170,19 +171,47 @@ let test#strategy="vimux"
 nmap <silent> <leader>t :RunNoseTestFocused<CR>
 nmap <silent> <leader>T :RunNoseTestBuffer<CR>
 
-let g:ycm_collect_identifiers_from_tags_files = 1 " Let YCM read tags from Ctags file
-let g:ycm_use_ultisnips_completer = 1 " Default 1, just ensure
-let g:ycm_seed_identifiers_with_syntax = 1 " Completion for programming language's keyword
-let g:ycm_complete_in_comments = 1 " Completion in comments
-let g:ycm_complete_in_strings = 1 " Completion in string
+"let g:ycm_collect_identifiers_from_tags_files = 1 " Let YCM read tags from Ctags file
+"let g:ycm_use_ultisnips_completer = 1 " Default 1, just ensure
+"let g:ycm_seed_identifiers_with_syntax = 1 " Completion for programming language's keyword
+"let g:ycm_complete_in_comments = 1 " Completion in comments
+"let g:ycm_complete_in_strings = 1 " Completion in string
+"let g:ycm_goto_buffer_command = 'vertical-split'
+"
+""let g:ycm_key_list_select_completion = ['<C-j>', '<Down>']
+""let g:ycm_key_list_previous_completion = ['<C-k>', '<Up>']
+"
+"nmap <leader>g :YcmCompleter GoTo<CR>
+"
 
-let g:ycm_key_list_select_completion = ['<C-j>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-k>', '<Up>']
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"   ag.vim  Setting
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-map <F4> :YcmCompleter GoTo<CR>
-
-" Plugin ag.vim
 " <leader>ag : Ag (search file contents)
 nnoremap <leader>ag :Ag! -i ""<Left>
+
 " Search word which cursor on
 nnoremap <leader>aw :Ag<CR>
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"   unltisnips Setting
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+" UltiSnips {{
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+" }}}
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+
+let g:airline#extensions#tabline#enabled = 1
+
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+

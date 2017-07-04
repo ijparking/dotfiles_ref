@@ -1,0 +1,199 @@
+snippet utf8
+	# -*- coding: utf-8 -*-
+
+snippet import
+	import os
+	import sys
+
+snippet REP
+	for ${1:i} in xrange(${2:n}):
+	    ${3}
+
+snippet freopen
+	#sys.stdin = file('${1:input.txt}', 'r')
+	#sys.stdout = file('${2:output.txt}', 'w')
+	rl = sys.stdin.readline
+
+snippet class
+	class ${1:ClassName}(${2:Object}):
+	    def __init__(self):
+	        pass
+
+snippet main
+	def main():
+	    ${1:pass}
+
+	if __name__ == '__main__':
+	    main()
+
+snippet "
+	"""${0:Comments here}"""
+snippet ""
+	"""${1:Title}
+
+	${2:Description}
+
+	Args:
+			${3}
+
+	Returns:
+			${4}
+
+	"""
+snippet rgr
+	#########################
+	# Red		: 
+	# Green		: 
+	# Refactor	: 
+	#########################
+snippet """
+	"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+	Date		: `system("date +%Y-%m-%d")`Author		: Hunjae Jung
+	Description	:
+		${0}
+	"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+snippet date
+	`system("date +%Y-%m-%d")` 
+snippet lc 
+	'http://localhost:5000' #gitignore
+snippet pdb
+	import pdb; pdb.set_trace(); #gitignore
+snippet nocov
+	#pragma: no cover
+snippet flask
+	# -*- coding: utf-8 -*-
+	from flask import Flask, request, render_template
+	app = Flask(__name__)
+
+	@app.route("/")
+	def index():
+		return render_template("index.html")
+
+	if __name__ == "__main__":
+		app.run(debug=True)
+snippet #
+	#####################################################
+	# ${1}
+	#####################################################
+snippet nt
+	# -*- coding: utf-8 -*-
+	from nose import with_setup
+	from nose.tools import nottest, raises
+
+	@nottest
+	def blank_setup():
+		pass
+
+	@with_setup(blank_setup)
+	def test_method():
+		pass
+snippet test
+
+	#################################################################
+	# Unittest for $3
+	#################################################################
+	from unittest import TestCase
+	class ${3:ClassName}Test(${4:TestCase}):
+
+		def setUp(self):
+			print self.id() + '...............[testing]'
+
+		def tearDown(self):
+			print self.id() + '...............[end]'
+
+		def test_${5:method_name}(self):
+			pass
+
+snippet testm
+	def test_${1:method_name}(self):
+		inputs = [
+			${2:input}
+		]
+
+		answers = [
+			${3:answer}
+		]
+
+		for index, item in enumerate(inputs):
+			output = $1(item)
+			self.assertEqual(output, answers[index], self.get_result_message(str(answers[index]), str(output)))
+
+snippet db
+	from sqlalchemy.sql import text
+	from sqlalchemy import create_engine
+
+	DB_HOST = 'mysql://udl:xpgpfks!@airbridge-db.cwgovxcx5cmk.ap-northeast-1.rds.amazonaws.com/udl?charset=utf8mb4' #gitignore
+	engine = create_engine(DB_HOST, convert_unicode=True) #gitignore
+
+snippet testapi
+	# -*- coding: utf-8 -*-
+	import unittest
+	import requests
+	import json
+	import sys
+
+	class ${1:TestAPI}(unittest.TestCase):
+
+		def __init__(self, *args, **kwargs):
+			super($1, self).__init__(*args, **kwargs)
+			self.resource = '/'
+			self.host = 'http://core.dev.airbridge.io'
+			if sys.platform == 'darwin':
+				self.host = 'http://localhost:5000' #gitignore
+			self.headers = {"Authorization": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJkZXZAYWIxODAuY28iLCJ0eXAiOiJhaXJicmlkZ2UvYXBpL3YxIiwiYXVkIjoiQUlSQlJJREdFIn0.lj3iBcvj79rmDqxPUxcgY5vvr1dBTd2r94BlgcI3Tsk"} #gitignore
+
+		def get_url(self):
+			return self.host + self.resource
+
+		def setUp(self):
+			print self.id() + '...............[testing]'
+
+		def tearDown(self):
+			print self.id() + '...............[end]'
+
+		def send_request(self, url, method='get', headers=None, data=None, cookies=None):
+			if headers is None:
+				headers = self.headers
+
+			if method == 'get':
+				res = requests.get(url, headers=headers, cookies=cookies)
+			elif method == 'post':
+				res = requests.post(url, data=data, headers=headers, cookies=cookies)
+			elif method == 'put':
+				res = requests.put(url, data=data, headers=headers, cookies=cookies)
+			elif method == 'delete':
+				res = requests.delete(url, data=data, headers=headers, cookies=cookies)
+			else:
+				print 'Now allowed method'
+
+			return res
+
+		def check_api_response(self, res, expected=200):
+			err_msg = """Expected {0}. But we got wrong status code: {1}\nError message:\n{2}""".format(str(expected), str(res.status_code), res.text.encode('utf-8'))
+			self.assertEqual(res.status_code, expected, err_msg)
+
+			if res.status_code == expected:
+					print """Test was successful. Response text below:\n{0}""".format(res.text.encode('utf-8'))
+
+		def test_${2:life_cycle}(self):
+			self.resource = '${3:/api}'
+
+			"""""""""""""""""""""""""""""""""""""""""""""
+			Test get
+			"""""""""""""""""""""""""""""""""""""""""""""
+			res = self.send_request(self.get_url())
+			self.check_api_response(res)
+
+			"""""""""""""""""""""""""""""""""""""""""""""
+			Test post
+			"""""""""""""""""""""""""""""""""""""""""""""
+			sample = json.dumps({
+					'providerId': '123'
+			})
+			res = self.send_request(self.get_url(), data=sample, method='post')
+			self.check_api_response(res)
+
+
+	if __name__ == '__main__':
+		unittest.main()
+
