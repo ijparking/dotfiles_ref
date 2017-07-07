@@ -10,7 +10,7 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 ln -sf ${PWD}/vim/vimrc ~/.vimrc 
 
 # vim snippets
-mkdir -f ~/.vim/snippets
+mkdir -p ~/.vim/snippets
 ln -sf ${PWD}/vim/snippets/* ~/.vim/snippets/
 
 # tmux.conf
