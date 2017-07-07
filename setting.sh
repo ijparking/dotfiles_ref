@@ -8,6 +8,7 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 
 # vimrc
 ln -sf ${PWD}/vim/vimrc ~/.vimrc 
+vim -c PlugInstall
 
 # vim snippets
 mkdir -p ~/.vim/snippets
