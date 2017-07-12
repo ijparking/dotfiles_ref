@@ -31,6 +31,8 @@ Plug 'flazz/vim-colorschemes'
 Plug 'rking/ag.vim'
 Plug 'SirVer/ultisnips'
 
+Plug 'airblade/vim-gitgutter'
+
 call plug#end()
 
 
@@ -160,6 +162,8 @@ map <F9> :NERDTreeToggle<CR>
 
 " Setting NERDTree Ignore Files
 let NERDTreeIgnore=['\.pyc$', '__pycache__']
+let NERDTreeShowHidden=1
+
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
