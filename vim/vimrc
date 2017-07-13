@@ -221,4 +221,7 @@ let g:UltiSnipsEditSplit="vertical"
 "
 hi Visual term=reverse cterm=reverse guifg=#000000 guibg=#FFFFFF gui=none
 
-
+" <leader>y, <leader>p : yank to or paste from the system clipboard
+noremap <leader>y "*y
+noremap <leader>p "*p
+noremap <leader>co ggVG*y
