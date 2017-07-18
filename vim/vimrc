@@ -65,6 +65,8 @@ set number
 " Set line number relative
 set relativenumber
 
+set bs=indent,eol,start
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   Search Setting
@@ -92,6 +94,8 @@ syntax on
 
 " Use color scheme 'onedark'
 colorscheme onedark
+hi Visual term=reverse cterm=reverse guifg=#000000 guibg=#FFFFFF gui=none
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   Indent Setting
@@ -154,6 +158,24 @@ nmap <C-l> <C-W>l
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"   copy to clipboard Setting
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" <leader>y, <leader>p : yank to or paste from the system clipboard
+noremap <leader>y "*y
+noremap <leader>p "*p
+noremap <leader>co ggVG*y
+
+"set clipboard=unnamed
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+"                       Setting for Plugins
+"                       
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   NERDTree Setting
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -162,8 +184,6 @@ map <F9> :NERDTreeToggle<CR>
 
 " Setting NERDTree Ignore Files
 let NERDTreeIgnore=['\.pyc$', '__pycache__']
-let NERDTreeShowHidden=1
-
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -174,6 +194,11 @@ let test#strategy="vimux"
 
 nmap <silent> <leader>t :RunNoseTestFocused<CR>
 nmap <silent> <leader>T :RunNoseTestBuffer<CR>
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"   YouCompleteMe Setting
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 let g:ycm_collect_identifiers_from_tags_files = 1 " Let YCM read tags from Ctags file
 let g:ycm_use_ultisnips_completer = 1 " Default 1, just ensure
@@ -198,7 +223,6 @@ nnoremap <leader>ag :Ag! -i ""<Left>
 " Search word which cursor on
 nnoremap <leader>aw :Ag<CR>
 
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   unltisnips Setting
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -214,17 +238,21 @@ let g:UltiSnipsJumpBackwardTrigger="<c-l>"
 let g:UltiSnipsEditSplit="vertical"
 
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"   airline Setting
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 let g:airline#extensions#tabline#enabled = 1
 
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 
-hi Visual term=reverse cterm=reverse guifg=#000000 guibg=#FFFFFF gui=none
 
-" <leader>y, <leader>p : yank to or paste from the system clipboard
-noremap <leader>y "*y
-noremap <leader>p "*p
-noremap <leader>co ggVG*y
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"   ctrlp Setting
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"set clipboard=unnamed
-set bs=indent,eol,start
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(exe|so|dll|pyc)$',
+  \ }
