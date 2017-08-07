@@ -1,7 +1,6 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vimrc
-"
-" Author:
+" " Author: YunSeop Song
 
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -32,6 +31,7 @@ Plug 'rking/ag.vim'
 Plug 'SirVer/ultisnips'
 
 Plug 'airblade/vim-gitgutter'
+Plug 'vim-syntastic/syntastic'
 
 call plug#end()
 
@@ -66,6 +66,8 @@ set number
 set relativenumber
 
 set bs=indent,eol,start
+
+set noimd
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -166,7 +168,7 @@ noremap <leader>y "*y
 noremap <leader>p "*p
 noremap <leader>co ggVG*y
 
-"set clipboard=unnamed
+set clipboard=unnamed
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -209,6 +211,7 @@ let g:ycm_goto_buffer_command = 'vertical-split'
 
 let g:ycm_key_list_select_completion = ['<C-j>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-k>', '<Up>']
+set completeopt-=preview
 
 nmap <leader>g :YcmCompleter GoTo<CR>
 
@@ -235,18 +238,51 @@ let g:UltiSnipsJumpBackwardTrigger="<c-l>"
 " }}}
 
 " If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
+" let g:UltiSnipsEditSplit="vertical"
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   airline Setting
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:airline_theme='simple'
+
+let g:airline_powerline_fonts = 1
 
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_buffers = 1
+let g:airline#extensions#tabline#show_tabs = 1
+
+" Show just the filename
+let g:airline#extensions#tabline#fnamemod = ':t'
+
+" enable/disable fugitive/lawrencium integration
+let g:airline#extensions#branch#enabled = 1
+
+" enable/disable showing a summary of changed hunks under source control.
+let g:airline#extensions#hunks#enabled = 1
+
+" enable/disable showing only non-zero hunks.
+let g:airline#extensions#hunks#non_zero_only = 1
+
+let g:airline#extensions#whitespace#enabled = 0
 
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+nmap <leader>1 <Plug>AirlineSelectTab1
+nmap <leader>2 <Plug>AirlineSelectTab2
+nmap <leader>3 <Plug>AirlineSelectTab3
+nmap <leader>4 <Plug>AirlineSelectTab4
+nmap <leader>5 <Plug>AirlineSelectTab5
+nmap <leader>6 <Plug>AirlineSelectTab6
+nmap <leader>7 <Plug>AirlineSelectTab7
+nmap <leader>8 <Plug>AirlineSelectTab8
+nmap <leader>9 <Plug>AirlineSelectTab9
+nmap <leader>~ <Plug>AirlineSelectPrevTab
+nmap <leader>` <Plug>AirlineSelectNextTab
+
+let g:airline#extensions#tabline#excludes = [".vimrc"]
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   ctrlp Setting
