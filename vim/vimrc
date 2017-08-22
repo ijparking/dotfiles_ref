@@ -31,7 +31,8 @@ Plug 'rking/ag.vim'
 Plug 'SirVer/ultisnips'
 
 Plug 'airblade/vim-gitgutter'
-Plug 'vim-syntastic/syntastic'
+
+Plug 'mhinz/vim-startify'
 
 call plug#end()
 
@@ -187,6 +188,8 @@ map <F9> :NERDTreeToggle<CR>
 " Setting NERDTree Ignore Files
 let NERDTreeIgnore=['\.pyc$', '__pycache__']
 
+let g:nerdtree_tabs_open_on_console_startup = 1
+let g:nerdtree_tabs_open_on_gui_startup = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   nosetest Setting
@@ -207,7 +210,6 @@ let g:ycm_use_ultisnips_completer = 1 " Default 1, just ensure
 let g:ycm_seed_identifiers_with_syntax = 1 " Completion for programming language's keyword
 let g:ycm_complete_in_comments = 1 " Completion in comments
 let g:ycm_complete_in_strings = 1 " Completion in string
-let g:ycm_goto_buffer_command = 'vertical-split'
 
 let g:ycm_key_list_select_completion = ['<C-j>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-k>', '<Up>']
@@ -281,6 +283,7 @@ nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
 nmap <leader>~ <Plug>AirlineSelectPrevTab
 nmap <leader>` <Plug>AirlineSelectNextTab
+nmap <leader>bq :bp <BAR> bd #<CR>
 
 let g:airline#extensions#tabline#excludes = [".vimrc"]
 
@@ -292,3 +295,15 @@ let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/]\.(git|hg|svn)$',
   \ 'file': '\v\.(exe|so|dll|pyc)$',
   \ }
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"   lint Setting with vimux plugin
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:lint_plugin="pylint"
+nmap <leader>l :VimuxRunCommand(g:lint_plugin . " " .  expand("%"))<CR>
+
+
+nmap <leader>gs :VimuxPromptCommand("git status -bs")<CR><CR>
+nmap <leader>gd :VimuxPromptCommand("git diff")<CR><CR>
