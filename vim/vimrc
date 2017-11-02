@@ -30,10 +30,18 @@ Plug 'rking/ag.vim'
 Plug 'SirVer/ultisnips'
 
 Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
 
+Plug 'xolox/vim-colorscheme-switcher'
+Plug 'xolox/vim-misc'
+
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
 
 call plug#end()
 
+map <F4> :NextColorScheme<CR>
+map <F5> :PrevColorScheme<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   General Setting
@@ -98,9 +106,11 @@ set incsearch
 syntax on
 
 " Use color scheme 'onedark'
-colorscheme onedark
-hi Visual term=reverse cterm=reverse guifg=#000000 guibg=#FFFFFF gui=none
+colorscheme seti
 
+hi Visual ctermfg=NONE  ctermbg=0       term=reverse    cterm=reverse   guifg=NONE      guibg=#4fa5c7   gui=NONE
+
+hi Search ctermfg=16  ctermbg=74    term=NONE    cterm=NONE   guifg=#151718      guibg=#55b5db      gui=NONE
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   Indent Setting
@@ -120,6 +130,9 @@ set smarttab
 " Smart Indent
 set si
 
+autocmd FileType javascript setlocal ts=2 sts=2 sw=2
+autocmd FileType css setlocal ts=2 sts=2 sw=2
+autocmd FileType html setlocal ts=2 sts=2 sw=2
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   Key Mapping
@@ -209,11 +222,10 @@ nmap <silent> <leader>T :RunNoseTestBuffer<CR>
 "   YouCompleteMe Setting
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+let g:ycm_max_num_candidates = 10
+
 let g:ycm_collect_identifiers_from_tags_files = 1 " Let YCM read tags from Ctags file
-let g:ycm_use_ultisnips_completer = 1 " Default 1, just ensure
 let g:ycm_seed_identifiers_with_syntax = 1 " Completion for programming language's keyword
-let g:ycm_complete_in_comments = 1 " Completion in comments
-let g:ycm_complete_in_strings = 1 " Completion in string
 
 let g:ycm_key_list_select_completion = ['<C-j>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-k>', '<Up>']
@@ -231,6 +243,8 @@ nnoremap <leader>ag :Ag! -i ""<Left>
 
 " Search word which cursor on
 nnoremap <leader>aw :Ag<CR>
+
+let g:ag_highlight=1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   unltisnips Setting
@@ -283,23 +297,29 @@ nmap <leader>4 <Plug>AirlineSelectTab4
 nmap <leader>5 <Plug>AirlineSelectTab5
 nmap <leader>6 <Plug>AirlineSelectTab6
 nmap <leader>7 <Plug>AirlineSelectTab7
-nmap <leader>8 <Plug>AirlineSelectTab8
+cmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
 nmap <leader>~ <Plug>AirlineSelectPrevTab
 nmap <leader>` <Plug>AirlineSelectNextTab
 nmap <leader>bq :bp <BAR> bd #<CR>
 
-let g:airline#extensions#tabline#excludes = [".vimrc"]
+"let g:airline#extensions#tabline#excludes = [".vimrc"]
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   ctrlp Setting
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'dir':  '\v[\/]\.(git|hg|svn|node_modules)$',
   \ 'file': '\v\.(exe|so|dll|pyc)$',
   \ }
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"   vim-markdown Setting
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:vim_markdown_folding_disabled = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   lint Setting with vimux plugin
