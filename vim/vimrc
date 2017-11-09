@@ -38,6 +38,7 @@ Plug 'xolox/vim-misc'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 
+Plug 'nathanaelkane/vim-indent-guides'
 call plug#end()
 
 map <F4> :NextColorScheme<CR>
@@ -110,8 +111,10 @@ colorscheme seti
 
 hi Visual ctermfg=NONE  ctermbg=0       term=reverse    cterm=reverse   guifg=NONE      guibg=#4fa5c7   gui=NONE
 
-hi Search ctermfg=16  ctermbg=74    term=NONE    cterm=NONE   guifg=#151718      guibg=#55b5db      gui=NONE
+hi Search ctermfg=16  ctermbg=111    term=NONE    cterm=NONE   guifg=#151718      guibg=#55b5db      gui=NONE
 
+set cursorline
+hi CursorLine term=NONE cterm=NONE guibg=Grey40
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   Indent Setting
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -130,9 +133,10 @@ set smarttab
 " Smart Indent
 set si
 
-autocmd FileType javascript setlocal ts=2 sts=2 sw=2
-autocmd FileType css setlocal ts=2 sts=2 sw=2
-autocmd FileType html setlocal ts=2 sts=2 sw=2
+autocmd FileType javascript,css,html,lua setlocal ts=2 sts=2 sw=2
+
+let g:indent_guides_enable_on_vim_startup = 1
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   Key Mapping
@@ -327,7 +331,6 @@ let g:vim_markdown_folding_disabled = 1
 
 let g:lint_plugin="pylint"
 nmap <leader>l :VimuxRunCommand(g:lint_plugin . " " .  expand("%"))<CR>
-
 
 nmap <leader>gs :VimuxRunCommand("git status -bs")<CR><CR>
 nmap <leader>gd :VimuxRunCommand("git diff")<CR><CR>
