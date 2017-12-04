@@ -1,6 +1,7 @@
 # Dotfiles
 
-Personal Terminal Setting
+Personal Terminal Setting for OSX
 
 - vim
 - tmux
+- zsh

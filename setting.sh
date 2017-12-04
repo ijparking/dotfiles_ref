@@ -23,7 +23,6 @@ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
 
 # zshrc
 ln -sf ${PWD}/zsh/zshrc ~/.zshrc
-source ~/.zshrc
 
 # vimrc
 echo "Install Neovim"
@@ -43,5 +42,11 @@ ln -sf ${PWD}/tmux/tmux.conf ~/.tmux.conf
 
 # tat
 sudo ln -sf ${PWD}/bin/tat /usr/local/bin/tat
+
+# virtualenv wrapper
+pip install virtualenv virtualenvwrapper
+mkdir -p ~/.envs
+
+source ~/.zshrc
 
 echo 'DONE!'

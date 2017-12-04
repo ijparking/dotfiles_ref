@@ -9,9 +9,6 @@ source $ZSH/oh-my-zsh.sh
 
 PATH=/usr/local/bin:"$PATH"
 
-# export WORKON_HOME=~/.envs
-# source /usr/local/bin/virtualenvwrapper.sh
-
 prompt_dir() { 
     prompt_segment blue black "${PWD##*/}"
 }
@@ -24,9 +21,15 @@ prompt_context() {
   fi
 }
 
+export WORKON_HOME=~/.envs
+source /usr/local/bin/virtualenvwrapper.sh
+
 alias nosetests='nosetests -s --nologcapture'
 alias vi='nvim'
 alias vim='nvim'
+alias mkvenv='mkvirtualenv'
+alias mkvenv3='mkvirtualenv -p /usr/local/bin/python3'
+alias rmvenv='rmvirtualenv'
 
 export AIRBRIDGE_DEVELOP_QUEUE=udl-stat-develop-insert-queue-yunseop
 export USE_AIRBRIDGE_LOCAL_DB=true
