@@ -11,37 +11,35 @@
 call plug#begin()
 
 Plug 'flazz/vim-colorschemes'
+Plug 'xolox/vim-colorscheme-switcher'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'ryanoasis/vim-devicons'
 
 Plug 'benmills/vimux'
 Plug 'pitluga/vimux-nose-test'
+Plug 'edkolev/tmuxline.vim'
 
 Plug 'mhinz/vim-startify'
 Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'edkolev/tmuxline.vim'
 
 Plug 'kien/ctrlp.vim'
 Plug 'vim-scripts/ctrlp-z'
 
 Plug 'Valloric/YouCompleteMe'
-
 Plug 'rking/ag.vim'
 Plug 'SirVer/ultisnips'
 
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 
-Plug 'xolox/vim-colorscheme-switcher'
 Plug 'xolox/vim-misc'
 
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
-
-Plug 'nathanaelkane/vim-indent-guides'
-Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 
@@ -185,6 +183,8 @@ vnoremap > >gv
 
 map <leader>nh :noh<CR>
 
+vnoremap <BS> <DEL>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   Moving tab Setting
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -221,7 +221,7 @@ let g:NERDTreeChDirMode = 1
 map <F9> :NERDTreeToggle<CR>
 
 " Setting NERDTree Ignore Files
-let NERDTreeIgnore=['\.pyc$', '__pycache__']
+let NERDTreeIgnore=['\.pyc$', '__pycache__', '.DS_Store', '.git', '.idea']
 
 let g:nerdtree_tabs_open_on_console_startup = 1
 let g:nerdtree_tabs_open_on_gui_startup = 1
@@ -246,8 +246,11 @@ let s:rspec_red = 'FE405F'
 let s:git_orange = 'F54D27'
 
 let g:NERDTreeExtensionHighlightColor = {}
-let g:NERDTreeExtensionHighlightColor['py'] = s:blue
+let g:NERDTreeExtensionHighlightColor['py'] = '519aba'
+let g:NERDTreeExtensionHighlightColor['py'] = s:darkBlue 
 let g:NERDTreeExtensionHighlightColor['md'] = s:brown
+
+let g:NERDTreeShowHidden=1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   nosetest Setting
