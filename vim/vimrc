@@ -110,7 +110,7 @@ set incsearch
 syntax on
 
 " Use color scheme 'onedark'
-colorscheme seti
+colorscheme onedark
 
 hi Visual ctermfg=NONE  ctermbg=0       term=reverse    cterm=reverse   guifg=NONE      guibg=#4fa5c7   gui=NONE
 
@@ -132,13 +132,16 @@ set shiftwidth=4
 set softtabstop=4
 
 " Using tab like 4 space
-set expandtab
-set smarttab
+set expandtab       "Use softtabstop spaces instead of tab characters for indentation
+set smarttab        "Automatically inserts indentation in some cases
+set cindent
 
 " Auto Indent
-"set ai
+set ai
 " Smart Indent
-"set si
+set si
+filetype indent off
+
 
 autocmd FileType javascript,css,html,lua setlocal ts=2 sts=2 sw=2
 
@@ -344,9 +347,8 @@ nmap <leader>9 <Plug>AirlineSelectTab9
 nmap <leader>~ <Plug>AirlineSelectPrevTab
 nmap <leader>` <Plug>AirlineSelectNextTab
 nmap <leader>bq :bp <BAR> bd #<CR>
-nmap <F9> :bprev<CR>
-nmap <F10> :bnext<CR>
-
+nmap H <Plug>AirlineSelectPrevTab
+nmap L <Plug>AirlineSelectNextTab
 "let g:airline#extensions#tabline#excludes = [".vimrc"]
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
