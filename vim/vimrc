@@ -1,7 +1,7 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vimrc
 " " Author: YunSeop Song
-" 
+"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -14,7 +14,7 @@ Plug 'flazz/vim-colorschemes'
 Plug 'xolox/vim-colorscheme-switcher'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'nathanaelkane/vim-indent-guides'
+Plug 'Yggdroot/indentLine'
 Plug 'ryanoasis/vim-devicons'
 
 Plug 'benmills/vimux'
@@ -32,6 +32,7 @@ Plug 'vim-scripts/ctrlp-z'
 Plug 'Valloric/YouCompleteMe'
 Plug 'rking/ag.vim'
 Plug 'SirVer/ultisnips'
+Plug 'ntpeters/vim-better-whitespace'
 
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
@@ -119,8 +120,8 @@ hi Search ctermfg=16  ctermbg=111    term=NONE    cterm=NONE   guifg=#151718    
 set cursorline
 hi CursorLine term=NONE cterm=NONE guibg=Grey40
 
-map <F4> :NextColorScheme<CR>
-map <F5> :PrevColorScheme<CR>
+" map <F4> :NextColorScheme<CR>
+" map <F5> :PrevColorScheme<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   Indent Setting
@@ -145,7 +146,7 @@ filetype indent off
 
 autocmd FileType javascript,css,html,lua setlocal ts=2 sts=2 sw=2
 
-let g:indent_guides_enable_on_vim_startup = 1
+let g:indentLine_enabled = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   Key Mapping
@@ -377,4 +378,7 @@ nmap <leader>gs :VimuxRunCommand("git status -bs")<CR><CR>
 nmap <leader>gd :VimuxRunCommand("git diff")<CR><CR>
 
 nmap <leader>r :VimuxRunCommand("!nosetest\t")<CR>
+
+let g:indentLine_color_term = 239
+"let g:indentLine_color_gui = '#A4E57E'
 
