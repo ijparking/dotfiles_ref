@@ -9,7 +9,7 @@ source $ZSH/oh-my-zsh.sh
 
 PATH=/usr/local/bin:"$PATH"
 
-prompt_dir() { 
+prompt_dir() {
     prompt_segment blue black "${PWD##*/}"
 }
 
