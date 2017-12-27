@@ -160,6 +160,9 @@ nnoremap <leader>src :source ~/.vimrc<CR>
 
 nnoremap <leader>b :set wrap!<CR>
 
+" ,zsh =>  Show edit tab .vimrc
+nnoremap <leader>zsh :tabe ~/.zshrc<CR>
+
 " ,q => Quit
 map <leader>q <ESC><ESC>:q<CR>
 map <leader>! <ESC><ESC>:q!<CR>

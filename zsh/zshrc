@@ -3,14 +3,14 @@ export ZSH=$HOME/.oh-my-zsh
 
 ZSH_THEME="agnoster"
 
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting osx)
+plugins=(git osx autojump zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
 PATH=/usr/local/bin:"$PATH"
 
 prompt_dir() {
-    prompt_segment blue black "${PWD##*/}"
+    prompt_segment green black "${PWD##*/}"
 }
 
 prompt_context() {
