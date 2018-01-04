@@ -3,7 +3,7 @@ export ZSH=$HOME/.oh-my-zsh
 
 ZSH_THEME="agnoster"
 
-plugins=(git osx autojump zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git osx autojump zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
