@@ -11,8 +11,6 @@
 call plug#begin()
 
 Plug 'flazz/vim-colorschemes'
-Plug 'xolox/vim-colorscheme-switcher'
-Plug 'xolox/vim-misc'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'Yggdroot/indentLine'
@@ -42,6 +40,7 @@ Plug 'godlygeek/tabular'
 Plug 'junegunn/goyo.vim'
 
 Plug 'wakatime/vim-wakatime'
+Plug 'vim-scripts/bufexplorer.zip'
 
 call plug#end()
 
@@ -49,33 +48,20 @@ call plug#end()
 "   General Setting
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-
 " Sets history line
 set history=500
-
 " Mapping <leader> => ,
 let mapleader=","
-
 " Show current position at bottom-right
 set ruler
-
-set lazyredraw
-
-set magic
-
 " Show matching brackets when text indicator is over them
 set showmatch
-
 " How many tenths of a second to blink when matching brackets
 set mat=2
-
 " Show line number
 set number
-
 " Set line number relative
 set relativenumber
-
-set bs=indent,eol,start
 
 set noimd
 
@@ -90,21 +76,25 @@ set nomodeline
 
 language en_US
 
+" No swap no backup
+set noswapfile
+set nobackup
+
+set pastetoggle=<F4>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   Search Setting
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Ignore case when searching
 set ignorecase
-
 " Be smart when searching
 set smartcase
-
 " Highlight search last result
 set hlsearch
-
 " Move cursor when searching
 set incsearch
+set bs=indent,eol,start
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   Color Setting
@@ -112,19 +102,15 @@ set incsearch
 
 " Syntax Enable
 syntax on
-
 " Use color scheme 'onedark'
 colorscheme onedark
-
-hi Visual ctermfg=NONE  ctermbg=0       term=reverse    cterm=reverse   guifg=NONE      guibg=#4fa5c7   gui=NONE
-
-hi Search ctermfg=16  ctermbg=111    term=NONE    cterm=NONE   guifg=#151718      guibg=#55b5db      gui=NONE
-
+" Visual mode color
+hi Visual ctermfg=NONE  ctermbg=0       term=reverse    cterm=reverse   guifg=NONE          guibg=#4fa5c7       gui=NONE
+" Search result color
+hi Search ctermfg=16    ctermbg=111     term=NONE       cterm=NONE      guifg=#151718       guibg=#55b5db       gui=NONE
+" Cursor color
 set cursorline
 hi CursorLine term=NONE cterm=NONE guibg=Grey40
-
-" map <F4> :NextColorScheme<CR>
-" map <F5> :PrevColorScheme<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   Indent Setting
@@ -137,19 +123,17 @@ set softtabstop=4
 
 " Using tab like 4 space
 set expandtab       "Use softtabstop spaces instead of tab characters for indentation
-set smarttab        "Automatically inserts indentation in some cases
-set cindent
 
 " Auto Indent
 set ai
-" Smart Indent
-" set si
-filetype indent off
-
+filetype plugin indent on
+filetype indent on
 
 autocmd FileType javascript,css,html,lua setlocal ts=2 sts=2 sw=2
 
 let g:indentLine_enabled = 1
+let g:indentLine_color_term = 239
+"let g:indentLine_color_gui = '#A4E57E'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   Key Mapping
@@ -195,6 +179,8 @@ map <leader>rh :noh<CR>
 
 vnoremap <BS> <DEL>
 
+nnoremap ; :
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   Moving tab Setting
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -216,25 +202,8 @@ noremap <leader>co ggVG*y
 set clipboard=unnamed
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"
-"                       Setting for Plugins
-"                       
+"   Define Color
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"   NERDTree Setting
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-let g:NERDTreeChDirMode = 1
-
-" F9 => Toggle NERDTree
-map <F9> :NERDTreeToggle<CR>
-
-" Setting NERDTree Ignore Files
-let NERDTreeIgnore=['\.pyc$', '__pycache__', '.DS_Store', '.git', '.idea']
-
-let g:nerdtree_tabs_open_on_console_startup = 1
-let g:nerdtree_tabs_open_on_gui_startup = 1
 
 let s:brown = "905532"
 let s:aqua =  "3AFFDB"
@@ -255,9 +224,30 @@ let s:white = "FFFFFF"
 let s:rspec_red = 'FE405F'
 let s:git_orange = 'F54D27'
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+"                       Setting for Plugins
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"   NERDTree Setting
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:NERDTreeChDirMode = 1
+
+" F9 => Toggle NERDTree
+map <F9> :NERDTreeToggle<CR>
+
+" Setting NERDTree Ignore Files
+let NERDTreeIgnore=['\.pyc$', '__pycache__', '.DS_Store', '.git', '.idea']
+
+let g:nerdtree_tabs_open_on_console_startup = 1
+let g:nerdtree_tabs_open_on_gui_startup = 1
+
 let g:NERDTreeExtensionHighlightColor = {}
 let g:NERDTreeExtensionHighlightColor['py'] = '519aba'
-let g:NERDTreeExtensionHighlightColor['py'] = s:darkBlue 
+let g:NERDTreeExtensionHighlightColor['py'] = s:darkBlue
 let g:NERDTreeExtensionHighlightColor['md'] = s:brown
 
 let g:NERDTreeShowHidden=1
@@ -336,7 +326,7 @@ let g:airline#extensions#hunks#enabled = 1
 " enable/disable showing only non-zero hunks.
 let g:airline#extensions#hunks#non_zero_only = 1
 
-let g:airline#extensions#whitespace#enabled = 0
+let g:airline#extensions#whitespace#enabled = 1
 
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
@@ -356,7 +346,7 @@ nmap <leader>` <Plug>AirlineSelectNextTab
 nmap <leader>bq :bp <BAR> bd #<CR>
 nmap H <Plug>AirlineSelectPrevTab
 nmap L <Plug>AirlineSelectNextTab
-"let g:airline#extensions#tabline#excludes = [".vimrc"]
+let g:airline#extensions#tabline#excludes = [".vimrc"]
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   ctrlp Setting
@@ -384,8 +374,5 @@ nmap <leader>gs :VimuxRunCommand("git status -bs")<CR><CR>
 nmap <leader>gd :VimuxRunCommand("git diff")<CR><CR>
 
 nmap <leader>r :VimuxRunCommand("!nosetest\t")<CR>
-
-let g:indentLine_color_term = 239
-"let g:indentLine_color_gui = '#A4E57E'
 
 nmap <leader>rw :StripWhitespace<CR>
