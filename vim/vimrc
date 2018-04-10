@@ -375,4 +375,11 @@ nmap <leader>gd :VimuxRunCommand("git diff")<CR><CR>
 nmap <leader>r :VimuxRunCommand("!nosetest\t")<CR>
 
 nmap <leader>rw :StripWhitespace<CR>
-nmap <leader>jf :execute '%!python -m json.tool'<CR>
+set concealcursor="
+
+nmap <leader>jb :call JsonBeautify()<CR>
+
+function! JsonBeautify()
+    set syntax=json
+    execute '%!python -m json.tool'
+endfunction
