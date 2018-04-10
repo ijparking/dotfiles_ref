@@ -139,14 +139,14 @@ let g:indentLine_color_term = 239
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " ,vi =>  Show edit tab .vimrc
-nnoremap <leader>vi :tabe ~/.vimrc<CR>
+nnoremap <leader>vi :tabe ~/.config/nvim/init.vim<CR>
 
 " ,src => Reload .vimrc
-nnoremap <leader>src :source ~/.vimrc<CR>
+nnoremap <leader>src :source ~/.config/nvim/init.vim<CR>
 
 nnoremap <leader>b :set wrap!<CR>
 
-" ,zsh =>  Show edit tab .vimrc
+" ,zsh =>  Show edit tab .zshrc
 nnoremap <leader>zsh :tabe ~/.zshrc<CR>
 
 " ,q => Quit
