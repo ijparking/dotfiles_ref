@@ -33,6 +33,24 @@ then
 fi
 
 echo "=============================================="
+echo "              Python                    "
+echo "=============================================="
+if [[ "$(which python)" == "/usr/local/bin/python" ]];
+then
+    echo "Already Installed Python!"
+else
+    echo "Install Python@2..."
+    brew install python@2
+fi
+if [[ "$(which python3)" == "/usr/local/bin/python3" ]];
+then
+    echo "Already Installed Python!"
+else
+    echo "Install Python@3..."
+    brew install python
+fi
+
+echo "=============================================="
 echo "                      Vim                     "
 echo "=============================================="
 while true; do
@@ -51,6 +69,8 @@ then
     echo "Install vim-plug[https://github.com/junegunn/vim-plug] for Neovim"
     curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    pip install neovim
+    sed -i -- 's/~\/.vimrc/~\/.config\/nvim\/init.vim/g' ${PWD}/vim/vimrc
     ln -sf ${PWD}/vim/vimrc ~/.config/nvim/init.vim
     echo "Install Neovim Plugin"
     nvim +PlugInstall +qall
@@ -62,6 +82,7 @@ else
     echo "Install vim-plug[https://github.com/junegunn/vim-plug] for Vim"
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
             https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    sed -i -- 's/~\/.config\/nvim\/init.vim/~\/.vimrc/g' ${PWD}/vim/vimrc
     ln -sf ${PWD}/vim/vimrc ~/.vimrc
     echo "Install Neovim Plugin"
     vim +PlugInstall +qall

@@ -38,7 +38,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'godlygeek/tabular'
 Plug 'junegunn/goyo.vim'
 
-Plug 'wakatime/vim-wakatime'
 Plug 'vim-scripts/bufexplorer.zip'
 
 call plug#end()
