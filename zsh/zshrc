@@ -10,14 +10,14 @@ source $ZSH/oh-my-zsh.sh
 PATH=/usr/local/bin:"$PATH"
 
 prompt_dir() {
-    prompt_segment green black "${PWD##*/}"
+    prompt_segment blue black "${PWD##*/}"
 }
 
 prompt_context() {
   local user=`whoami`
 
   if [[ "$user" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-    prompt_segment black default "%(!.%{%F{yellow}%}.)✝"
+    prompt_segment green default "%(!.%{%F{yellow}%}.)🍺"
   fi
 }
 
@@ -34,7 +34,9 @@ alias da='deactivate'
 alias wk='workon ${PWD##*/}'
 alias dc='docker-compose'
 alias dm='docker-machine'
+alias ipy='ipython'
 
+function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
 export AIRBRIDGE_DEVELOP_QUEUE=udl-stat-develop-insert-queue-yunseop
 export USE_AIRBRIDGE_LOCAL_DB=true
 

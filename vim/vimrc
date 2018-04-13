@@ -40,6 +40,10 @@ Plug 'junegunn/goyo.vim'
 
 Plug 'vim-scripts/bufexplorer.zip'
 
+Plug 'google/vim-maktaba'
+Plug 'google/vim-codefmt'
+Plug 'google/vim-glaive'
+
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -374,11 +378,14 @@ nmap <leader>gd :VimuxRunCommand("git diff")<CR><CR>
 nmap <leader>r :VimuxRunCommand("!nosetest\t")<CR>
 
 nmap <leader>rw :StripWhitespace<CR>
+
 set concealcursor="
 
 nmap <leader>jb :call JsonBeautify()<CR>
 
 function! JsonBeautify()
-    set syntax=json
     execute '%!python -m json.tool'
+    set syntax=json
 endfunction
+
+vnoremap fm :FormatLines<CR>
