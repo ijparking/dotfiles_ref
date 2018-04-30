@@ -40,4 +40,3 @@ function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
 export AIRBRIDGE_DEVELOP_QUEUE=udl-stat-develop-insert-queue-yunseop
 export USE_AIRBRIDGE_LOCAL_DB=true
 
-function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}

@@ -31,6 +31,7 @@ Plug 'vim-scripts/ctrlp-z'
 Plug 'rking/ag.vim'
 Plug 'SirVer/ultisnips'
 Plug 'ntpeters/vim-better-whitespace'
+Plug 'Valloric/YouCompleteMe'
 
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
@@ -39,6 +40,7 @@ Plug 'godlygeek/tabular'
 Plug 'junegunn/goyo.vim'
 
 Plug 'vim-scripts/bufexplorer.zip'
+Plug 'chrisbra/csv.vim'
 
 Plug 'google/vim-maktaba'
 Plug 'google/vim-codefmt'
@@ -115,6 +117,29 @@ set cursorline
 hi CursorLine term=NONE cterm=NONE guibg=Grey40
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"   Define Color
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let s:brown = "905532"
+let s:aqua =  "3AFFDB"
+let s:blue = "689FB6"
+let s:darkBlue = "44788E"
+let s:purple = "834F79"
+let s:lightPurple = "834F79"
+let s:red = "AE403F"
+let s:beige = "F5C06F"
+let s:yellow = "F09F17"
+let s:orange = "D4843E"
+let s:darkOrange = "F16529"
+let s:pink = "CB6F6F"
+let s:salmon = "EE6E73"
+let s:green = "8FAA54"
+let s:lightGreen = "31B53E"
+let s:white = "FFFFFF"
+let s:rspec_red = 'FE405F'
+let s:git_orange = 'F54D27'
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   Indent Setting
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -124,7 +149,8 @@ set shiftwidth=4
 set softtabstop=4
 
 " Using tab like 4 space
-set expandtab       "Use softtabstop spaces instead of tab characters for indentation
+"Use softtabstop spaces instead of tab characters for indentation
+set expandtab
 
 " Auto Indent
 set ai
@@ -135,7 +161,6 @@ autocmd FileType javascript,css,html,lua,yaml setlocal ts=2 sts=2 sw=2
 
 let g:indentLine_enabled = 1
 let g:indentLine_color_term = 239
-"let g:indentLine_color_gui = '#A4E57E'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   Key Mapping
@@ -194,37 +219,14 @@ nmap <C-l> <C-W>l
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   copy to clipboard Setting
+"   <leader>y, <leader>p : yank to or paste from the system clipboard
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" <leader>y, <leader>p : yank to or paste from the system clipboard
 noremap <leader>y "*y
 noremap <leader>p "*p
 noremap <leader>co ggVG*y
 
 set clipboard=unnamed
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"   Define Color
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-let s:brown = "905532"
-let s:aqua =  "3AFFDB"
-let s:blue = "689FB6"
-let s:darkBlue = "44788E"
-let s:purple = "834F79"
-let s:lightPurple = "834F79"
-let s:red = "AE403F"
-let s:beige = "F5C06F"
-let s:yellow = "F09F17"
-let s:orange = "D4843E"
-let s:darkOrange = "F16529"
-let s:pink = "CB6F6F"
-let s:salmon = "EE6E73"
-let s:green = "8FAA54"
-let s:lightGreen = "31B53E"
-let s:white = "FFFFFF"
-let s:rspec_red = 'FE405F'
-let s:git_orange = 'F54D27'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
@@ -248,8 +250,7 @@ let g:nerdtree_tabs_open_on_console_startup = 1
 let g:nerdtree_tabs_open_on_gui_startup = 1
 
 let g:NERDTreeExtensionHighlightColor = {}
-let g:NERDTreeExtensionHighlightColor['py'] = '519aba'
-let g:NERDTreeExtensionHighlightColor['py'] = s:darkBlue
+let g:NERDTreeExtensionHighlightColor['py'] = s:blue
 let g:NERDTreeExtensionHighlightColor['md'] = s:brown
 
 let g:NERDTreeShowHidden=1
@@ -262,6 +263,14 @@ let test#strategy="vimux"
 
 nmap <silent> <leader>t :RunNoseTestFocused<CR>
 nmap <silent> <leader>T :RunNoseTestBuffer<CR>
+
+let g:lint_plugin="pylint"
+nmap <leader>l :VimuxRunCommand(g:lint_plugin . " " .  expand("%"))<CR>
+
+nmap <leader>gs :VimuxRunCommand("git status -bs")<CR><CR>
+nmap <leader>gd :VimuxRunCommand("git diff")<CR><CR>
+
+nmap <leader>r :VimuxRunCommand("!nosetest\t")<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   YouCompleteMe Setting
@@ -295,14 +304,9 @@ let g:ag_highlight=1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-" UltiSnips {{
 let g:UltiSnipsExpandTrigger="<Tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-h>"
 let g:UltiSnipsJumpBackwardTrigger="<c-l>"
-" }}}
-
-" If you want :UltiSnipsEdit to split your window.
-" let g:UltiSnipsEditSplit="vertical"
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -360,32 +364,30 @@ let g:ctrlp_custom_ignore = {
   \ }
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"   vim-markdown Setting
+"   vim-codefmt Setting
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let g:vim_markdown_folding_disabled = 1
+vnoremap fm :FormatLines<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"   lint Setting with vimux plugin
+"   WhiteSpace Setting
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-let g:lint_plugin="pylint"
-nmap <leader>l :VimuxRunCommand(g:lint_plugin . " " .  expand("%"))<CR>
-
-nmap <leader>gs :VimuxRunCommand("git status -bs")<CR><CR>
-nmap <leader>gd :VimuxRunCommand("git diff")<CR><CR>
-
-nmap <leader>r :VimuxRunCommand("!nosetest\t")<CR>
 
 nmap <leader>rw :StripWhitespace<CR>
 
-set concealcursor="
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"   csv.vim Setting
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-nmap <leader>jb :call JsonBeautify()<CR>
+nmap <leader>csv :CSVTabularize<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"   Custom Function Setting
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+nmap <leader>json :call JsonBeautify()<CR>
 
 function! JsonBeautify()
     execute '%!python -m json.tool'
     set syntax=json
 endfunction
-
-vnoremap fm :FormatLines<CR>
