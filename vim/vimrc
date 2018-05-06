@@ -31,7 +31,6 @@ Plug 'vim-scripts/ctrlp-z'
 Plug 'rking/ag.vim'
 Plug 'SirVer/ultisnips'
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'Valloric/YouCompleteMe'
 
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
@@ -41,6 +40,7 @@ Plug 'junegunn/goyo.vim'
 
 Plug 'vim-scripts/bufexplorer.zip'
 Plug 'chrisbra/csv.vim'
+Plug 'chrisbra/Colorizer'
 
 Plug 'google/vim-maktaba'
 Plug 'google/vim-codefmt'
@@ -157,10 +157,14 @@ set ai
 filetype plugin indent on
 filetype indent on
 
-autocmd FileType javascript,css,html,lua,yaml setlocal ts=2 sts=2 sw=2
-
 let g:indentLine_enabled = 1
+lef g:indentLine_set_colors = 0
 let g:indentLine_color_term = 239
+let g:indentLine_color_gui = s:blue
+
+autocmd FileType javascript,css,html,htmldjango,lua,yaml setlocal ts=2 sts=2 sw=2
+au FileType htmldjango set syntax=html
+au FileType htmldjango set ft=html
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   Key Mapping
@@ -350,6 +354,7 @@ nmap <leader>9 <Plug>AirlineSelectTab9
 nmap <leader>~ <Plug>AirlineSelectPrevTab
 nmap <leader>` <Plug>AirlineSelectNextTab
 nmap <leader>bq :bp <BAR> bd #<CR>
+nmap <leader>bn :e tmp<CR>
 nmap H <Plug>AirlineSelectPrevTab
 nmap L <Plug>AirlineSelectNextTab
 let g:airline#extensions#tabline#excludes = [".vimrc"]
