@@ -1,105 +1,37 @@
 #! /bin/bash
 
-SHELL=$SHELL
-
-echo "=============================================="
-echo "                  Oh My Zsh                   "
-echo "=============================================="
-
-if [[ $SHELL == *"zsh"* ]];
+if [[ "$(uname -s)" != "Darwin" ]];
 then
-    echo "Already Installed Oh My Zsh!"
-else
-    echo "Install Oh My Zsh[https://github.com/robbyrussell/oh-my-zsh]..."
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+    echo "=============================================="
+    echo "              You're not using OSX.             "
+    echo "=============================================="
+    exit
 fi
 
-# zshrc
+# zsh
+source ${PWD}/zsh/setting.sh
 ln -sf ${PWD}/zsh/zshrc ~/.zshrc
 
-if [[ "$(uname -s)" == "Darwin" ]];
-then
-    echo "=============================================="
-    echo "              Homebrew                    "
-    echo "=============================================="
-    if [[ "$(which brew)" == "/usr/local/bin/brew" ]];
-    then
-        echo "Already Installed Homebrew!"
-    else
-        echo "Install Homebrew[https://brew.sh/index_ko.html]..."
-        /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-    fi
-fi
+# Homebrew
+source ${PWD}/brew/setting.sh
 
-echo "=============================================="
-echo "              Python                    "
-echo "=============================================="
-if [[ "$(which python)" == "/usr/local/bin/python" ]];
-then
-    echo "Already Installed Python!"
-else
-    echo "Install Python@2..."
-    brew install python@2
-fi
-if [[ "$(which python3)" == "/usr/local/bin/python3" ]];
-then
-    echo "Already Installed Python!"
-else
-    echo "Install Python@3..."
-    brew install python
-fi
+# Python
+source ${PWD}/python/setting.sh
 
-echo "=============================================="
-echo "                      Vim                     "
-echo "=============================================="
-while true; do
-    read -p "Do you wish to install Neovim? [y/n]" yn
-    case $yn in
-        [Yy]* ) VIM="NEOVIM"; break;;
-        [Nn]* ) VIM="VIM"; exit;;
-        * ) echo "Please answer yes or no.";;
-    esac
-done
-
-if [[ $VIM == "NEOVIM" ]];
-then
-    echo "Install Neovim..."
-    brew install neovim
-    echo "Install vim-plug[https://github.com/junegunn/vim-plug] for Neovim"
-    curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    pip install neovim
-    sed -i -- 's/~\/.vimrc/~\/.config\/nvim\/init.vim/g' ${PWD}/vim/vimrc
-    ln -sf ${PWD}/vim/vimrc ~/.config/nvim/init.vim
-    echo "Install Neovim Plugin"
-    nvim +PlugInstall +qall
-    mkdir -p ~/.config/nvim/snippets
-    ln -sf ${PWD}/vim/snippets/* ~/.config/nvim/snippets/
-else
-    echo "Install Vim..."
-    brew install vim
-    echo "Install vim-plug[https://github.com/junegunn/vim-plug] for Vim"
-    curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-            https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    sed -i -- 's/~\/.config\/nvim\/init.vim/~\/.vimrc/g' ${PWD}/vim/vimrc
-    ln -sf ${PWD}/vim/vimrc ~/.vimrc
-    echo "Install Neovim Plugin"
-    vim +PlugInstall +qall
-    mkdir -p ~/.vim/snippets
-    ln -sf ${PWD}/vim/snippets/* ~/.vim/snippets/
-fi
+# Vim
+source ${PWD}/vim/setting.sh
 
 # tmux.conf
 ln -sf ${PWD}/tmux/tmux.conf ~/.tmux.conf
 
 # tat
-sudo ln -sf ${PWD}/bin/tat /usr/local/bin/tat
+ln -sf ${PWD}/bin/tat /usr/local/bin/tat
 
 # virtualenv wrapper
+echo "Install virtualenv virtualenvwrapper"
 pip install virtualenv virtualenvwrapper
 mkdir -p ~/.envs
 
-source ~/.zshrc
+zsh
 
-echo 'DONE!'
+echo 'DONE🎉🎉🎉
