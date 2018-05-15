@@ -18,7 +18,7 @@ Plug 'ryanoasis/vim-devicons'
 
 Plug 'benmills/vimux'
 Plug 'pitluga/vimux-nose-test'
-Plug 'edkolev/tmuxline.vim'
+"Plug 'edkolev/tmuxline.vim'
 
 Plug 'mhinz/vim-startify'
 Plug 'scrooloose/nerdtree'
@@ -46,6 +46,8 @@ Plug 'google/vim-maktaba'
 Plug 'google/vim-codefmt'
 Plug 'google/vim-glaive'
 
+Plug 'roxma/vim-paste-easy'
+
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -69,10 +71,10 @@ set relativenumber
 
 set noimd
 
-set encoding=utf-8
+set encoding=UTF-8
 set guifont=KnackSansMono_Nerd_Font:h11
 
-set fileencodings=utf-8,cp949
+set fileencodings=UTF-8,cp949
 
 set nowrap
 
@@ -353,11 +355,14 @@ cmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
 nmap <leader>~ <Plug>AirlineSelectPrevTab
 nmap <leader>` <Plug>AirlineSelectNextTab
-nmap <leader>bq :bp <BAR> bd #<CR>
-nmap <leader>bn :e tmp<CR>
 nmap H <Plug>AirlineSelectPrevTab
 nmap L <Plug>AirlineSelectNextTab
 let g:airline#extensions#tabline#excludes = [".vimrc"]
+nmap <leader>bq :bp <BAR> bd #<CR>
+nmap <leader>bn :e tmp<CR>
+nnoremap <C-S-n> :enew<CR>
+nnoremap <C-S-q> :bp <BAR> bd #<CR>
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   ctrlp Setting
@@ -380,11 +385,20 @@ vnoremap fm :FormatLines<CR>
 
 nmap <leader>rw :StripWhitespace<CR>
 
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   csv.vim Setting
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 nmap <leader>csv :CSVTabularize<CR>
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"   vim-paste-easy Setting
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:paste_easy_enable=0
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   Custom Function Setting

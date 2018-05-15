@@ -22,9 +22,10 @@ source ${PWD}/python/setting.sh
 source ${PWD}/vim/setting.sh
 
 # tmux.conf
+echo "=============================================="
+echo "              Tmux                    "
+echo "=============================================="
 ln -sf ${PWD}/tmux/tmux.conf ~/.tmux.conf
-
-# tat
 ln -sf ${PWD}/bin/tat /usr/local/bin/tat
 
 # virtualenv wrapper
