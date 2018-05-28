@@ -48,6 +48,10 @@ Plug 'google/vim-glaive'
 Plug 'roxma/vim-paste-easy'
 Plug 'vim-scripts/indentpython.vim'
 
+
+Plug 'codeindulgence/vim-tig'
+Plug 'scrooloose/nerdcommenter'
+
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -250,7 +254,7 @@ let g:NERDTreeChDirMode = 1
 map <F9> :NERDTreeToggle<CR>
 
 " Setting NERDTree Ignore Files
-let NERDTreeIgnore=['\.pyc$', '__pycache__', '.DS_Store', '.git$', '.idea']
+let NERDTreeIgnore=['\.pyc$', '__pycache__', '.DS_Store', '.git$', '.idea', 'node_modules$']
 
 let g:nerdtree_tabs_open_on_console_startup = 1
 let g:nerdtree_tabs_open_on_gui_startup = 1
@@ -279,7 +283,6 @@ nmap <leader>gd :VimuxRunCommand("git diff")<CR><CR>
 nmap <leader>r :VimuxRunCommand("!nosetest\t")<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"   YouCompleteMe Setting
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 let g:ycm_max_num_candidates = 10
@@ -369,7 +372,7 @@ nnoremap <C-S-q> :bp <BAR> bd #<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn|node_modules)$',
+  \ 'dir':  '\v[\/](\.git|\.hg|\.svn|node_modules)$',
   \ 'file': '\v\.(exe|so|dll|pyc)$',
   \ }
 
@@ -399,6 +402,38 @@ nmap <leader>csv :CSVTabularize<CR>
 
 let g:paste_easy_enable=0
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"   vim-tig Setting
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:tig_default_command = 'main'
+let g:tig_open_command = 'tabe'
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"   Nerd-Commenter Setting
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
+
+" Set a language to use its alternate delimiters by default
+let g:NERDAltDelims_java = 1
+
+" Add your own custom formats or override the defaults
+let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
+
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   Custom Function Setting
