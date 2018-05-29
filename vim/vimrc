@@ -48,6 +48,7 @@ Plug 'google/vim-glaive'
 Plug 'roxma/vim-paste-easy'
 Plug 'vim-scripts/indentpython.vim'
 
+Plug 'fatih/vim-go'
 
 Plug 'codeindulgence/vim-tig'
 Plug 'scrooloose/nerdcommenter'
