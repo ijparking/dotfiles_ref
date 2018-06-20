@@ -49,6 +49,9 @@ Plug 'roxma/vim-paste-easy'
 Plug 'vim-scripts/indentpython.vim'
 
 Plug 'fatih/vim-go'
+Plug 'leafgarland/typescript-vim'
+Plug 'mxw/vim-jsx'
+Plug 'shime/vim-livedown'
 
 Plug 'codeindulgence/vim-tig'
 Plug 'scrooloose/nerdcommenter'
@@ -212,8 +215,6 @@ inoremap ㅓㅏ <esc>
 
 vnoremap < <gv
 vnoremap > >gv
-
-map <leader>rh :noh<CR>
 
 vnoremap <BS> <DEL>
 
@@ -434,6 +435,14 @@ let g:NERDCommentEmptyLines = 1
 
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"   Livedown Setting
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+nmap <leader>gm :LivedownToggle<CR>
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   Custom Function Setting
