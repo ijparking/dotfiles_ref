@@ -274,14 +274,13 @@ let test#strategy="vimux"
 
 nmap <silent> <leader>t :RunNoseTestFocused<CR>
 nmap <silent> <leader>T :RunNoseTestBuffer<CR>
+nmap <leader>rt :VimuxRunCommand("!nosetest\t")<CR>
 
 let g:lint_plugin="pylint"
 nmap <leader>l :VimuxRunCommand(g:lint_plugin . " " .  expand("%"))<CR>
 
 nmap <leader>gs :VimuxRunCommand("git status -bs")<CR><CR>
 nmap <leader>gd :VimuxRunCommand("git diff")<CR><CR>
-
-nmap <leader>r :VimuxRunCommand("!nosetest\t")<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
