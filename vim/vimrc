@@ -54,6 +54,9 @@ Plug 'leafgarland/typescript-vim'
 Plug 'mxw/vim-jsx'
 Plug 'shime/vim-livedown'
 
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+
 Plug 'codeindulgence/vim-tig'
 Plug 'scrooloose/nerdcommenter'
 
