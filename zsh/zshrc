@@ -27,7 +27,7 @@ source /usr/local/bin/virtualenvwrapper.sh
 alias nosetests='nosetests -s --nologcapture'
 alias vi='nvim'
 alias vim='nvim'
-alias mkvenv='mkvirtualenv'
+alias mkvenv='mkvirtualenv -p /usr/local/bin/python2'
 alias mkvenv3='mkvirtualenv -p /usr/local/bin/python3'
 alias rmvenv='rmvirtualenv'
 alias da='deactivate'

@@ -30,6 +30,7 @@ Plug 'vim-scripts/ctrlp-z'
 Plug 'rking/ag.vim'
 Plug 'SirVer/ultisnips'
 Plug 'ntpeters/vim-better-whitespace'
+Plug 'Valloric/YouCompleteMe'
 
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
